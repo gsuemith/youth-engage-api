@@ -93,6 +93,7 @@ In each folder create a router and model javascript file e.g. `user-router.js` a
 Don't forget to apply middlewares:
 ```
 server.use(express.json())
+server.use(helmet())
 ```
 
 Model files can access database like so:
