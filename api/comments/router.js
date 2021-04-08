@@ -1,5 +1,5 @@
 const express = require('express')
-const router = express.router()
+const router = express.Router()
 
 const Comments = require('./model')
 
@@ -8,6 +8,10 @@ router.get('/', (req, res) => {
   .then(comments => {
     if(comments.length > 0){
       res.status(200).json(comments)
+    } else {
+      res.status(404).json({
+        message: "Sorry, no comments found."
+      })
     }
   })
   .catch(err => {

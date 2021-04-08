@@ -1,6 +1,13 @@
 ## Client code located in 
 https://github.com/gsuemith/youth-engage
 
+## Endpoints
+```
+[GET] /api/users
+[GET] /api/posts
+[GET] /api/comments
+```
+
 # Setting up server from scratch
 
 ```
