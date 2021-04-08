@@ -5,7 +5,7 @@ const find = () => {
 }
 
 const findById = id => {
-  return db('users').where({ id })
+  return db('users').where({ id }).first()
 }
 
 
