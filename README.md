@@ -101,6 +101,7 @@ Don't forget to apply middlewares:
 ```
 server.use(express.json())
 server.use(helmet())
+server.use(cors())
 ```
 
 Model files can access database like so:
