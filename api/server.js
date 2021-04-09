@@ -1,5 +1,6 @@
 const express = require('express')
 const helmet = require('helmet')
+const cors = require('cors')
 
 const userRouter = require('./users/user-router')
 const commentRouter = require('./comments/router')
@@ -7,6 +8,7 @@ const postRouter = require('./posts/router')
 
 const server = express()
 
+server.use(cors())
 server.use(express.json())
 server.use(helmet())
 
