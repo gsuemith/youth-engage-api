@@ -92,11 +92,36 @@ Create `index.js` in the root folder
 
 Create a folder called `api` and a file called `server.js` in the folder
 
-In the `api` folder create folders for each table e.g. `users`
+In the `api` folder create folders for each resource e.g. `users`
 
 In each folder create a router and model javascript file e.g. `user-router.js` and `user-model.js`
 
 ## Make all imports, exports, and connections
+Create servers and routers:
+```
+// needed in all routers and servers
+const express = require('express')
+
+// instantiate
+const server = express()
+// or
+const router = express.Router()
+
+// Be sure to export your routers and server
+module.exports = server
+// or
+module.exports = router
+```
+
+Using routers:
+```
+// in server.js
+// do the following for each resource
+const resourceRouter = require('./resource/resource-router.js')
+
+server.use('/api/resource', resourceRouter)
+```
+
 Don't forget to apply middlewares:
 ```
 server.use(express.json())
