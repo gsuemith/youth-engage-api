@@ -15,6 +15,11 @@ server.use('/api/posts', postRouter)
 server.use('/api/comments', commentRouter)
 
 
+server.use("/api", (_, res) => {
+  res.json({ data: "API is accounted for" })
+})
+
+
 server.use('/', (req, res) => {
   res.send(`<h2>Welcome to our API!</h2>`);
 })
