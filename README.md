@@ -9,7 +9,8 @@ https://github.com/gsuemith/youth-engage
 ```
 
 # Setting up server from scratch
-
+## Installations
+### Initial installations
 ```
 npx gitignore node
 
@@ -18,7 +19,6 @@ npx gitignore node
 gitignore node
 ```
 
-## Installations
 ### Database Schema Installations
 
 ```
