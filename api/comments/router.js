@@ -3,7 +3,7 @@ const router = express.Router()
 
 const Comments = require('./model')
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   Comments.find()
   .then(comments => {
     if(comments.length > 0){
@@ -14,9 +14,7 @@ router.get('/', (req, res) => {
       })
     }
   })
-  .catch(err => {
-    res.status(500).json({ message:err.message })
-  })
+  .catch(err => { next(err)})
 })
 
 module.exports = router

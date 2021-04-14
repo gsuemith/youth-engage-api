@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
 router.get('/:id/posts', async (req, res, next) => {
   try {
     const posts = await User.getPosts(req.user.id)
-    return posts
+    res.status(200).json(posts)
   } catch (err) { next(err) }
 })
 

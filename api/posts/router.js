@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const Posts = require ('./model')
+const Posts = require('./model')
+const { postExists } = require('./middleware')
+
+router.use('/:id', postExists)
 
 router.get('/', async (req, res) => {
   try {
@@ -18,6 +21,8 @@ router.get('/', async (req, res) => {
   }
 })
 
-
+router.get('/:id', (req, res) => {
+  res.status(200).json(req.post)
+})
 
 module.exports = router
