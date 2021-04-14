@@ -14,7 +14,7 @@ server.use(helmet())
 
 server.use((err, req, res, next) => { // eslint-disable-line
   res.status(500).json({ error: err.message,
-    message: "Something happened with the server"
+    message: "Something unexpected happened with the server"
   })
 })
 
