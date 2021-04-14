@@ -48,7 +48,7 @@ In the `api` folder create folders for each resource e.g. `users`
 
 In each folder create a router and model javascript file e.g. `user-router.js` and `user-model.js`
 
-## Make all imports, exports, and connections
+### Make all imports, exports, and connections
 Create servers and routers:
 ```
 // needed in all routers and servers
@@ -93,9 +93,9 @@ server.listen(PORT, () => {
 })
 ```
 
-# Database Setup
+## Database Setup
 
-## Create and configure knexfile
+### Create and configure knexfile
 ```
 // initialize knex to create knexfile.js
 knex init
@@ -123,7 +123,7 @@ module.exports = {
 };
 ```
 
-## Create Migrations
+### Create Migrations
 Run `knex migrate:make <create-name>` to create a migration file.
 
 You will find it in the directory specified in `knexfile.js`
@@ -143,7 +143,7 @@ const environment = process.env.NODE_ENV || 'development'
 module.exports = knex(configs[environment])
 ```
 
-## Create Seeds
+### Create Seeds
 Run `knex seed:make <00-table-name>` to create a seed file.  Number your seeds to run in such an order so that foreign keys refer to existing tables.
 
 Sample seed file
@@ -159,4 +159,4 @@ exports.seed = function(knex) {
 
 Run `knex seed:run` to seed database.
 
-# Implement Endpoints
+## Implement Endpoints
