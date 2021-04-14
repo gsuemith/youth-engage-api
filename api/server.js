@@ -2,7 +2,7 @@ const express = require('express')
 const helmet = require('helmet')
 const cors = require('cors')
 
-const userRouter = require('./users/user-router')
+const userRouter = require('./users/router')
 const commentRouter = require('./comments/router')
 const postRouter = require('./posts/router')
 
@@ -11,6 +11,12 @@ const server = express()
 server.use(cors())
 server.use(express.json())
 server.use(helmet())
+
+server.use((err, req, res, next) => { // eslint-disable-line
+  res.status(500).json({ error: err.message,
+    message: "Something happened with the server"
+  })
+})
 
 server.use('/api/users', userRouter)
 server.use('/api/posts', postRouter)
