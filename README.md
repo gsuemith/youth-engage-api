@@ -159,3 +159,29 @@ Run `knex seed:run` to seed database.
 ```
 const db = require('../../data/db-config.js')
 ```
+
+## Deploy to Heroku
+### Installations
+```
+// install dotenv module
+npm i dotenv
+
+// add the following script to package.json
+"start": "node index.js"
+```
+
+### In index.js add the following:
+```
+const dotenv = require('dotenv').config()  //eslint-disable-line
+```
+The comment disables eslint on dotenv
+
+### Add environment variables
+Create a file called `.env` in the root directory and add enter `PORT=5000`. Or run the following in the root folder.
+```
+echo PORT=5000 >> .env
+```
+
+### Production configuration
+In `knexfile.js`, add a `production` attribute and configure it as needed.
+
