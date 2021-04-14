@@ -38,6 +38,63 @@ npm i express
 npm i nodemon -D
 ```
 
+## Create api directory and files
+
+Create `index.js` in the root folder
+
+Create a folder called `api` and a file called `server.js` in the folder
+
+In the `api` folder create folders for each resource e.g. `users`
+
+In each folder create a router and model javascript file e.g. `user-router.js` and `user-model.js`
+
+## Make all imports, exports, and connections
+Create servers and routers:
+```
+// needed in all routers and servers
+const express = require('express')
+
+// instantiate
+const server = express()
+// or
+const router = express.Router()
+
+// Be sure to export your routers and server
+module.exports = server
+// or
+module.exports = router
+```
+
+### Using routers:
+```
+// in server.js
+// do the following for each resource
+const resourceRouter = require('./resource/resource-router.js')
+
+server.use('/api/resource', resourceRouter)
+```
+
+### Don't forget to apply middlewares:
+```
+server.use(express.json())
+server.use(helmet())
+server.use(cors())
+```
+
+### Model files can access database like so:
+```
+const db = require('../../data/db-config.js')
+```
+
+## Start your server in `index.js` with:
+```
+server.listen(PORT, () => {
+  console.log(`LISTENING ON PORT ${PORT}`)
+})
+```
+
+# Database Setup
+
 ## Create and configure knexfile
 ```
 // initialize knex to create knexfile.js
@@ -86,57 +143,20 @@ const environment = process.env.NODE_ENV || 'development'
 module.exports = knex(configs[environment])
 ```
 
-## Create api directory and files
+## Create Seeds
+Run `knex seed:make <00-table-name>` to create a seed file.  Number your seeds to run in such an order so that foreign keys refer to existing tables.
 
-Create `index.js` in the root folder
-
-Create a folder called `api` and a file called `server.js` in the folder
-
-In the `api` folder create folders for each resource e.g. `users`
-
-In each folder create a router and model javascript file e.g. `user-router.js` and `user-model.js`
-
-## Make all imports, exports, and connections
-Create servers and routers:
+Sample seed file
 ```
-// needed in all routers and servers
-const express = require('express')
-
-// instantiate
-const server = express()
-// or
-const router = express.Router()
-
-// Be sure to export your routers and server
-module.exports = server
-// or
-module.exports = router
+// /seeds/01-users.js
+exports.seed = function(knex) {
+  return knex('users').insert([
+    { username: 'garrick', email:'g@rrick.com', password: 'password'},
+    { username: 'samuel', email:'s@muel.ai', password: 'password'},
+  ])
+};
 ```
 
-Using routers:
-```
-// in server.js
-// do the following for each resource
-const resourceRouter = require('./resource/resource-router.js')
+Run `knex seed:run` to seed database.
 
-server.use('/api/resource', resourceRouter)
-```
-
-Don't forget to apply middlewares:
-```
-server.use(express.json())
-server.use(helmet())
-server.use(cors())
-```
-
-Model files can access database like so:
-```
-const db = require('../../data/db-config.js')
-```
-
-Finally, start your server in `index.js` with:
-```
-server.listen(PORT, () => {
-  console.log(`LISTENING ON PORT ${PORT}`)
-})
-```
+# Implement Endpoints
