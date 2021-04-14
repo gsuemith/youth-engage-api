@@ -1,4 +1,4 @@
-const User = require('./user-model')
+const User = require('./model')
 
 const checkUserExists = async (req, res, next) => {
   const id = req.params.id
@@ -12,7 +12,7 @@ const checkUserExists = async (req, res, next) => {
       res.status(404).json({ message: "User not found" })
     }
   } catch(e) {
-    res.status(500).json(e.message)
+    next(e)
   }
 }
 

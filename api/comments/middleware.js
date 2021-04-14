@@ -12,7 +12,7 @@ const checkCommentExists = async (req, res, next) => {
       res.status(404).json({ message: "Comment not found" })
     }
   } catch(e) {
-    res.status(500).json(e.message)
+    next(e)
   }
 }
 
