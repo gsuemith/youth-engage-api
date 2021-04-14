@@ -81,11 +81,6 @@ server.use(helmet())
 server.use(cors())
 ```
 
-### Model files can access database like so:
-```
-const db = require('../../data/db-config.js')
-```
-
 ## Start your server in `index.js` with:
 ```
 server.listen(PORT, () => {
@@ -159,4 +154,8 @@ exports.seed = function(knex) {
 
 Run `knex seed:run` to seed database.
 
-## Implement Endpoints
+## Implement Endpoints and Models
+### Model files can access database like so:
+```
+const db = require('../../data/db-config.js')
+```
