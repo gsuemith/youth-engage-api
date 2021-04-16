@@ -123,7 +123,21 @@ Run `knex migrate:make <create-name>` to create a migration file.
 
 You will find it in the directory specified in `knexfile.js`
 
-Create your schema migration
+```
+exports.up = function(knex) {
+  return knex.schema
+    .createTable('table-name', tbl => {
+      tbl.increments();
+    })
+};
+
+// drop tables in reverse order
+exports.down = function(knex) {
+  return knex
+    .dropTableIfExists('table-name')
+};
+
+```
 
 Run `knex migrate:latest` to create the database file.
 
