@@ -1,10 +1,10 @@
-const User = require('./model')
+const Users = require('./model')
 
 const checkUserExists = async (req, res, next) => {
   const id = req.params.id
 
   try {
-    const user = await User.findById(id)
+    const user = await Users.findById(id)
     if (user) {
       req.user = user
       next()

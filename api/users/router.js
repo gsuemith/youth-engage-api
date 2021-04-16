@@ -1,9 +1,8 @@
 const express = require('express')
-const router = express.Router()
-
+const User = require('./model')
 const { checkUserExists } = require('./middleware')
 
-const User = require('./model')
+const router = express.Router()
 
 router.use('/:id', checkUserExists)
 
