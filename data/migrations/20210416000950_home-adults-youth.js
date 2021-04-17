@@ -4,9 +4,9 @@ exports.up = function(knex) {
     .createTable('homes', tbl => {
       tbl.increments()
       tbl.string('address').unique().notNullable()
-      tbl.string('city', 32).notNullable()
-      tbl.string('state', 2).notNullable()
-      tbl.integer('zip', 5).notNullable()
+      tbl.string('city', 32).defaultTo('Woodbridge')
+      tbl.string('state', 2).defaultTo('VA')
+      tbl.integer('zip', 5)
     })
     .createTable('adults', tbl => {
       tbl.increments()
@@ -25,7 +25,9 @@ exports.up = function(knex) {
         .inTable('homes')
         .onDelete('RESTRICT')
         .onUpdate('RESTRICT')
-      tbl.boolean('parent').defaultTo(false)
+      tbl.boolean('parent')
+        .notNullable()
+        .defaultTo(false)
     })
     .createTable('youth', tbl => {
       tbl.increments()

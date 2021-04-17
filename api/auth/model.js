@@ -4,8 +4,10 @@ const add = async newUser => {
   const { home, name, user } = newUser
   const group = user.role === 'youth' ? 'youth' : 'adults'
   
-  let user_id
-  await db.transactions(async trx => {
+  let new_user_id
+  await db.transaction(async trx => {
+
+    // check if address in database
     let home_id
     const [existing_home] = await trx('homes').where('address', home.address);
     if (existing_home) {
@@ -15,16 +17,22 @@ const add = async newUser => {
       home_id = new_home_id
     }
 
-    const [new_user_id] = await trx('users').insert(user)
+    // create user account
+    const [user_id] = await trx('users').insert(user)
 
-    const [group_id] = await trx(group)
-      .insert({ name, new_user_id, home_id, parent: user.role === 'parent' })
+    // create new Member
+    const newMember = { name, user_id, home_id }
+
+    if(group === 'adults')
+      newMember.parent = user.role === 'parent'
+
+    const [group_id] = await trx(group).insert(newMember)
 
     if (group_id)
-      user_id = new_user_id
+      new_user_id = user_id
   })
 
-  return db('users').where({ id: user_id }).first()
+  return db('users').where({ id: new_user_id }).first()
 }
 
 module.exports = {
