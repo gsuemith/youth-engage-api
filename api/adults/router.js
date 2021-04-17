@@ -19,4 +19,12 @@ router.get('/:id/children', (req, res, next) => {
   .catch(next)
 })
 
+router.get('/:id/phone', (req, res, next) => {
+  Adults.getPhoneNumbers(req.params.id)
+  .then(numbers => {
+    res.json(200).json(numbers)
+  })
+  .catch(next)
+})
+
 module.exports = router

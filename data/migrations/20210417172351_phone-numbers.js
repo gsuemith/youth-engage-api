@@ -8,7 +8,7 @@ exports.up = function(knex) {
         .notNullable()
       tbl.boolean('can_text').defaultTo(false)
     })
-    .createTable('youth_phone_numbers', tbl => {
+    .createTable('youth_phones', tbl => {
       tbl.increments()
       tbl.integer('phone_id')
         .unsigned()
@@ -25,7 +25,7 @@ exports.up = function(knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
     })
-    .createTable('parent_phone_numbers', tbl => {
+    .createTable('adult_phones', tbl => {
       tbl.increments()
       tbl.string('description')
       tbl.integer('phone_id')

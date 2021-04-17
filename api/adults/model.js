@@ -12,7 +12,15 @@ const getChildren = parent_id => {
     .where('a.id', parent_id)
 }
 
+const getPhoneNumbers = id => {
+  return db('phone_numbers as p')
+    .select('ap.description', 'p.number', 'p.can_text')
+    .join('adult_phones as ap', 'ap.phone_id', 'p.id')
+    .where('ap.adult_id', id)
+}
+
 module.exports = {
   find,
   getChildren,
+  getPhoneNumbers
 }
