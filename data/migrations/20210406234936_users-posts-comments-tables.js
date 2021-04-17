@@ -6,6 +6,7 @@ exports.up = function(knex) {
       tbl.string('email', 64).unique().notNullable()
       tbl.string('username', 64).notNullable()
       tbl.string('password').notNullable()
+      tbl.string('role', 16).notNullable()
     })
     .createTable('posts', tbl => {
       tbl.increments()

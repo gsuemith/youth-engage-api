@@ -3,7 +3,7 @@ exports.up = function(knex) {
   return knex.schema
     .createTable('homes', tbl => {
       tbl.increments()
-      tbl.string('address').notNullable()
+      tbl.string('address').unique().notNullable()
       tbl.string('city', 32).notNullable()
       tbl.string('state', 2).notNullable()
       tbl.integer('zip', 5).notNullable()

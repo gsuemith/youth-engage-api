@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.use('/:id', checkUserExists)
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
     const users = await User.find()
     if(users.length > 0){
@@ -16,9 +16,7 @@ router.get('/', async (req, res) => {
         message: "Sorry, no users found."
       })
     }
-  } catch(err) {
-    res.status(500).json({ message: err.message })
-  }
+  } catch (err) { next(err) }
 })
 
 router.get('/:id', (req, res) => {
