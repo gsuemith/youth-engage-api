@@ -11,4 +11,12 @@ router.get('/', (req, res, next) => {
   .catch(next)
 })
 
+router.get('/:id/children', (req, res, next) => {
+  Adults.getChildren(req.params.id)
+  .then(children => {
+    res.status(200).json(children)
+  })
+  .catch(next)
+})
+
 module.exports = router
