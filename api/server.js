@@ -6,6 +6,7 @@ const userRouter = require('./users/router')
 const commentRouter = require('./comments/router')
 const postRouter = require('./posts/router')
 const adultRouter = require('./adults/router')
+const youthRouter = require('./youth/router')
 const authRouter = require('./auth/router.js')
 
 const server = express()
@@ -20,11 +21,12 @@ server.use((err, req, res, next) => { // eslint-disable-line
   })
 })
 
+server.use('/auth', authRouter)
 server.use('/api/users', userRouter)
 server.use('/api/posts', postRouter)
 server.use('/api/comments', commentRouter)
 server.use('/api/adults', adultRouter)
-server.use('/auth/', authRouter)
+server.use('/api/youth', youthRouter)
 
 
 server.use("/api", (_, res) => {
