@@ -8,6 +8,9 @@ https://github.com/gsuemith/youth-engage
 [GET] /api/comments
 ```
 
+## Schema
+![alt text](./schema210418.PNG)
+
 # Setting up server from scratch
 ## Installations
 ### Initial installations
